@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjt.mapper.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.zjt.entity.Project">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_address" jdbcType="VARCHAR" property="projectAddress" />
+    <result column="project_company" jdbcType="VARCHAR" property="projectCompany" />
+    <result column="project_leader" jdbcType="VARCHAR" property="projectLeader" />
+    <result column="project_startTime" jdbcType="TIMESTAMP" property="projectStarttime" />
+    <result column="project_endTime" jdbcType="TIMESTAMP" property="projectEndtime" />
+    <result column="project_state" jdbcType="INTEGER" property="projectState" />
+    <result column="project_addTime" jdbcType="TIMESTAMP" property="projectAddtime" />
+    <result column="project_updateTime" jdbcType="TIMESTAMP" property="projectUpdatetime" />
+    <result column="project_notes" jdbcType="VARCHAR" property="projectNotes" />
+    <result column="project_contactPerson" jdbcType="VARCHAR" property="projectContactperson" />
+    <result column="project_contactTel" jdbcType="VARCHAR" property="projectContacttel" />
+    <result column="project_type" jdbcType="INTEGER" property="projectType" />
+  </resultMap>
+
+  <!--根据用户id查询所有角色-->
+  <select id="selectProjectById" resultMap="BaseResultMap" parameterType="java.util.List">
+    <![CDATA[
+    SELECT
+      tr.ID, tr.BZ, tr.NAME, tr.REMARKS
+    from t_role tr
+           inner join
+           t_user_role tur
+           on tr.id=tur.role_id
+    where
+      tur.user_id= ]]>#{userid}
+  </select>
+
+
+</mapper>

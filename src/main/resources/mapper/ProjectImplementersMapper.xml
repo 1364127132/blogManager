@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjt.mapper.ProjectImplementersMapper">
+  <resultMap id="BaseResultMap" type="com.zjt.entity.ProjectImplementers">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="im_id" jdbcType="INTEGER" property="imId" />
+    <result column="im_project_id" jdbcType="INTEGER" property="imProjectId" />
+    <result column="im_user_id" jdbcType="INTEGER" property="imUserId" />
+    <result column="im_name" jdbcType="VARCHAR" property="imName" />
+  </resultMap>
+
+  <select id="selecImplementerById" resultMap="BaseResultMap" parameterType="java.util.List">
+    <![CDATA[
+    SELECT
+      *
+    from h_project_implementers pi
+    where
+      pi.im_project_id= ]]>#{projectId}
+  </select>
+</mapper>

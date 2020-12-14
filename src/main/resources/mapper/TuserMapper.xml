@@ -12,4 +12,15 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
+
+  <select id="selectAllImUser" resultMap="BaseResultMap" parameterType="java.util.List">
+    <![CDATA[
+    SELECT
+      *
+    from t_user tu
+    where
+      tu.bz = "实施人员"
+      and tu.id not in (select hi.im_user_id from h_project_implementers hi where hi.im_project_id =  ]]>#{projectId})
+  </select>
+
 </mapper>
