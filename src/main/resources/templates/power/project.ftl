@@ -396,7 +396,7 @@
                     datatype: "json",//请求数据返回的类型。可选json,xml,txt
                     emptyrecords: "当前无记录",
                     //, '备注', '项目添加时间', '项目修改时间'
-                    colNames: ['ID' , '项目名称', '地点', '公司名称', '项目负责人', '项目开始时间', '项目结束时间', '项目状态', '客户联系人', '联系电话', '项目类型', ' '],//jqGrid的列显示名字
+                    colNames: ['ID' , '项目名称',  '项目负责人', '项目开始时间', '项目结束时间', '项目状态','地点', '公司名称', '客户联系人', '联系电话', '项目类型', ' '],//jqGrid的列显示名字
                     colModel: [  //这里会根据index去解析jsonReader中root对象的属性，填充cell
                         {name: 'projectId', index: 'projectId',align: "center", width: 50, sortable: true, search: false},
                         {name: 'projectName', index: 'projectName',align: "center", width: 100, sortable: false,search: true,
@@ -407,8 +407,6 @@
                             editable: true,
                             editoptions: {size: "20", maxlength: "30"}//当执行修改和新增的操作时，会显示输入框，输入框的配置*/
                         },
-                        {name: 'projectAddress', index: 'projectAddress',align: "center", width: 100, sortable: false, search: false},
-                        {name: 'projectCompany', index: 'projectCompany', align: "center", width: 100, sortable: false, search: false},
                         {name: 'projectLeader', index: 'projectLeader',align: "center", width: 100, sortable: false, search: false},
                         {name: 'projectStarttime', index: 'projectStarttime', align: "center", width: 100, sortable: false, search: false},
                         {name: 'projectEndtime', index: 'projectEndtime',align: "center", width: 100, sortable: false, search: false},
@@ -416,6 +414,8 @@
                         // {name: 'projectAddtime', index: 'projectAddtime',align: "center", width: 100, sortable: false, search: false},
                         // {name: 'projectUpdatetime', index: 'projectUpdatetime', align: "center", width: 100, sortable: false, search: false},
                         // {name: 'projectNotes', index: 'projectNotes',align: "center", width: 100, sortable: false, search: false},
+                        {name: 'projectAddress', index: 'projectAddress',align: "center", width: 100, sortable: false, search: false},
+                        {name: 'projectCompany', index: 'projectCompany', align: "center", width: 100, sortable: false, search: false},
                         {name: 'projectContactperson', index: 'projectContactperson', align: "center", width: 100, sortable: false, search: false},
                         {name: 'projectContacttel', index: 'projectContacttel',align: "center", width: 100, sortable: false, search: false},
                         {name: 'projectType', index: 'projectType', edittype:'select', formatter: 'select',editoptions: {value:"0:帆软;1:自有"},align: "center", width: 100, sortable: false, search: false},
@@ -446,7 +446,7 @@
                         total: "totalpages",//总页数
                         records: "totalrecords",//总记录数
                         repeatitems: false,// 如果设为false，则jqGrid在解析json时，会根据name来搜索对应的数据元素（即可以json中元素可以不按顺序）；而所使用的name是来自于colModel中的name设定。
-                        projectId: "projectId"//主键字段名称
+                        id: "projectId"//主键字段名称
                     },
                     prmNames: { //如当前查询实体为ware，这些可以在查询对象的superObject中设定
                         page: "page", // 表示请求页码的参数名称
@@ -455,7 +455,7 @@
                         order: "sord", // 表示采用的排序方式的参数名称
                         search: "search", // 表示是否是搜索请求的参数名称(实际上在搜索时会传给后台三个参数：String searchField;//搜索字段String searchString;//搜索值String searchOper;//搜索条件公式)
                         nd: "nd", // 表示已经发送请求的次数的参数名称
-                        id: "projectId", // 表示当在编辑数据模块中发送数据时，使用的id的名称
+                        id: "id", // 表示当在编辑数据模块中发送数据时，使用的id的名称
                         oper: "oper", // operation参数名称
                         editoper: "edit", // 当在edit模式中提交数据时，操作的名称
                         addoper: "add", // 当在add模式中提交数据时，操作的名称
@@ -467,8 +467,8 @@
                     rowNum: 10,//一页显示多少条
                     rowList: [10, 20, 30],//可供用户选择一页显示多少条
                     pager: '#pager2',//表格页脚的占位符(一般是div)的id
-                    sortname: 'projectId',//初始化的时候排序的字段
-                    sortorder: "desc",//排序方式,可选desc,asc
+                    sortname: 'id',//初始化的时候排序的字段
+                    sortorder: "asc",//排序方式,可选desc,asc
                     viewrecords: true,//定义是否要显示总记录数
                     hidegrid: false,//启用或者禁用控制表格显示、隐藏的按钮，只有当caption 属性不为空时起效
                     height: "100%",

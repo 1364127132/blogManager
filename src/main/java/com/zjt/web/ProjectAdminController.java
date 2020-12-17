@@ -7,6 +7,7 @@ import com.zjt.model.JqgridBean;
 import com.zjt.model.PageRusult;
 import com.zjt.service.*;
 import net.minidev.json.JSONArray;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,10 +54,19 @@ public class ProjectAdminController {
 
         Example projectExample = new Example(Project.class);
 
+        Example.Criteria criteria = projectExample.or();
+
+        if (StringUtils.isNotEmpty(jqgridbean.getSearchField())) {
+            if ("projectName".equalsIgnoreCase(jqgridbean.getSearchField())) {
+                if ("eq".contentEquals(jqgridbean.getSearchOper())) {
+                    criteria.andEqualTo("projectName",jqgridbean.getSearchString());
+                }
+            }
+        }
+
         PageHelper.startPage(jqgridbean.getPage(), jqgridbean.getLength());
         List<Project> projectList = projectService.selectByExample(projectExample);
         PageRusult<Project> pageRusult =new PageRusult<Project>(projectList);
-
 
         resultmap.put("currpage", String.valueOf(pageRusult.getPageNum()));
         resultmap.put("totalpages", String.valueOf(pageRusult.getPages()));
